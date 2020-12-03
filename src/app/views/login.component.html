@@ -1,0 +1,23 @@
+<div>
+	<form (ngSubmit)="onSubmit()">
+		<h1>Inicio de sesión</h1>
+		<div *ngIf="errorMessage">
+			<div>
+				<strong>¡Error!</strong> {{ errorMessage }}
+			</div>
+		</div>
+		<p>Correo: </p><input #email="ngModel" name="email" [(ngModel)]="user.email" placeholder="Correo" required [childMessage]="parentMessage"><br>
+		<span *ngIf="!email.valid && email.touched">
+			El email es obligatorio
+		</span>
+		<p>Contraseña: </p><input name="password" [(ngModel)]="user.password" type="text" placeholder="Password" required>
+		<p>Tipo de usuario:</p>
+		<select #typeOfUser="ngModel" name="typeOfUser" [(ngModel)]="user.typeOfUser" id="typeOfUser" [(value)]="selected">
+			<option value="">---Selecciona---</option>
+	    	<option value="Root">Root</option>
+	    	<option value="Administrator">Administrador</option>
+	    	<option value="TUser">Usuario normal</option>
+	    </select>
+		<br><button type="submit" value="Confirmar registro">Confirmar</button>
+	</form>
+</div>

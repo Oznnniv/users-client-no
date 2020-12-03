@@ -1,0 +1,16 @@
+<div>
+	<form (ngSubmit)="onSubmit()">
+		<div class="container main-container">
+		    <h4>Token:</h4>
+		    <div *ngIf="errorMessage">
+				<div>
+					<strong>¡Error!</strong> {{ errorMessage }}
+				</div>
+			</div>
+		    <input type="text" name="token" [(ngModel)]="token.token">
+		    <input type="text" name="typeOfOperation" [(ngModel)]="token.typeOfOperation" *ngIf="!isHidden">
+		    <input type="text" name="nameOfOperation" [(ngModel)]="token.nameOfOperation" *ngIf="!isHidden">
+		    <button type="submit">Continuar</button>
+		</div>
+	</form>
+</div>
