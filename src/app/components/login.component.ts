@@ -33,10 +33,10 @@ export class LoginComponent {
 		}
 		this._userService.singUp(this.user).subscribe(
 			response => {
-				//console.log(response);
+				console.log(response.user);
 				//this.rootCreation = false;
 				//this.menu = true;x
-				localStorage.setItem('email', JSON.stringify(this.user.email));
+				localStorage.setItem('identity', JSON.stringify(response.user));
 				this._router.navigate(['/login/token']);
 			},
 			error => {

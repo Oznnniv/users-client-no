@@ -30,11 +30,11 @@ export class UsersCreationComponent {
 		this.isTUser = true;
 		this.user = new Users('', '', '1234567890', 'create', '', '0xeA2A4D2c8E195efAff764DFfCd5936EA7dB88Ef9', 'hashX', '', false, false, false, false, false, false, false, false, false, false, false, false);
 		//this.user = new Users('email', 'password', 'initialToken', 'typeOfOperation', 'nameOfOperation', 'addressU', 'hashX', 'typeOfUser', 'dp1', 'dp2', 'dp3', 'dp4', 'dp5', 'dp6', 'dp7', 'dp8', 'dp9', 'dp10', 'dp11', 'dp12');
+		this.token = this._userService.getToken();
 
 	}
 
 	ngOnInit() {
-		//this.token = this._userService.getToken();
 		//console.log(this.token);
 	}
 

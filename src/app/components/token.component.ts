@@ -23,8 +23,8 @@ export class TokenComponent {
 		private _router: Router
 	){
 		this.isHidden = true;
-		this.email = '';
-		this.token = new Token('', this._userService.getEmail().replace(/['"]+/g, ''), 'authentication', 'loginUser');
+		this.email = JSON.parse(this._userService.getIdentity());
+		this.token = new Token('', this.email.email.replace(/['"]+/g, ''), 'authentication', 'loginUser');
 	}
 
 	ngOnInit() {

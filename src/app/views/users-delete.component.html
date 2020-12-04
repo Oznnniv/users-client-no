@@ -1,0 +1,32 @@
+<div>
+	<form (ngSubmit)="onSubmit()">
+		<h1>Registro</h1>
+		<div *ngIf="errorMessage">
+			<div>
+				<strong>¡Error!</strong> {{ errorMessage }}
+			</div>
+		</div>
+		<p *ngIf="!isHidden">Correo:</p><input #email="ngModel" name="email" [(ngModel)]="user.email" id="email" type="email" placeholder="Correo" required disabled><br>
+		<p>Contraseña:</p><input #password="ngModel" name="password" [(ngModel)]="user.password" id="password" type="password" placeholder="Contraseña" required="" disabled>
+		<p *ngIf="!isHidden">Token:</p><input #initialToken="ngModel" name="initialToken" [(ngModel)]="user.initialToken" id="initialToken" type="text" placeholder="Token" required="" *ngIf="!isHidden">
+		<p *ngIf="!isHidden">Tipo de operación:</p><input #typeOfOperation="ngModel" name="typeOfOperation" [(ngModel)]="user.typeOfOperation" id="typeOfOperation" type="text" placeholder="Tipo de operación" required=""disabled="true" *ngIf="!isHidden">
+		<p *ngIf="!isHidden">Nombre de operación:</p><input #nameOfOperation="ngModel" name="nameOfOperation" [(ngModel)]="user.nameOfOperation" id="nameOfOperation" type="text" placeholder="Nombre de operación" required="" disabled="true" *ngIf="!isHidden">
+		<p *ngIf="!isHidden">AdrressU:</p><input #addressU="ngModel" name="addressU" [(ngModel)]="user.addressU" id="addressU" type="text" placeholder="AddressU" required="" *ngIf="!isHidden">
+		<!--Modificar para que agarre el MD5-->
+		<p *ngIf="!isHidden">HashX:</p><input #hashX="ngModel" name="hashX" [(ngModel)]="user.hashX" id="hashX" type="text" placeholder="HashX" required="" disabled="true" *ngIf="!isHidden">
+		<p>DP:</p>
+		<input *ngIf="isTUser" type="checkbox" #dp1="ngModel" name="dp1" [(ngModel)]="user.dp1" id="dp1" disabled><label *ngIf="isTUser">Creación de usuarios administradores</label><br *ngIf="isTUser">
+		<input *ngIf="isTUser" type="checkbox" #dp2="ngModel" name="dp2" [(ngModel)]="user.dp2" id="dp2" disabled><label *ngIf="isTUser">Creación de usuarios normales</label><br *ngIf="isTUser">
+		<input type="checkbox" #dp3="ngModel" name="dp3" [(ngModel)]="user.dp3" id="dp3" disabled><label>Actualización de datos personales</label><br>
+		<input *ngIf="isTUser" type="checkbox" #dp4="ngModel" name="dp4" [(ngModel)]="user.dp4" id="dp4" disabled><label *ngIf="isTUser">Actualización de usuarios administradores</label><br *ngIf="isTUser">
+		<input *ngIf="isTUser" type="checkbox" #dp5="ngModel" name="dp5" [(ngModel)]="user.dp5" id="dp5" disabled><label *ngIf="isTUser">Actualización de usuarios normales</label><br *ngIf="isTUser">
+		<input type="checkbox" #dp6="ngModel" name="dp6" [(ngModel)]="user.dp6" id="dp6" disabled><label>Eliminación de cuenta</label><br>
+		<input *ngIf="isTUser" type="checkbox" #dp7="ngModel" name="dp7" [(ngModel)]="user.dp7" id="dp7" disabled><label *ngIf="isTUser">Eliminación de usuarios administradores</label><br *ngIf="isTUser">
+		<input *ngIf="isTUser"type="checkbox" #dp8="ngModel" name="dp8" [(ngModel)]="user.dp8" id="dp8" disabled><label *ngIf="isTUser">Eliminación de usuarios normales</label><br *ngIf="isTUser">
+		<input type="checkbox" #dp9="ngModel" name="dp9" [(ngModel)]="user.dp9" id="dp9" disabled><label>Lectura de datos personales</label><br>
+		<input *ngIf="isTUser" type="checkbox" #dp10="ngModel" name="dp10" [(ngModel)]="user.dp10" id="dp10" disabled><label *ngIf="isTUser">Lectura de usuarios administradores</label><br *ngIf="isTUser">
+		<input *ngIf="isTUser" type="checkbox" #dp11="ngModel" name="dp11" [(ngModel)]="user.dp11" id="dp11" disabled><label *ngIf="isTUser">Lectura de usuarios normales</label><br *ngIf="isTUser">
+		<input type="checkbox" #dp12="ngModel" name="dp12" [(ngModel)]="user.dp12" id="dp12" disabled><label>Autenticación</label><br>
+		<br><button type="submit">Eliminar</button><br>
+	</form>
+</div>

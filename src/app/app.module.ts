@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { RootCreationComponent } from './components/root-creation.component';
 import { UsersCreationComponent } from './components/users-creation.component';
+import { UsersUpdateComponent } from './components/users-update.component';
+import { UsersDeleteComponent } from './components/users-delete.component';
 import { RootMenuComponent } from './components/root-menu.component';
 import { LoginComponent } from './components/login.component';
 import { TokenComponent } from './components/token.component';
@@ -18,6 +20,8 @@ import { TokenComponent } from './components/token.component';
     WelcomeComponent,
     RootCreationComponent,
     UsersCreationComponent,
+    UsersUpdateComponent,
+    UsersDeleteComponent,
     RootMenuComponent,
     LoginComponent,
     TokenComponent

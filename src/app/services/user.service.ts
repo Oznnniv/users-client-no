@@ -9,7 +9,7 @@ import { GLOBAL } from './global';
 @Injectable()
 export class UserService{
 	public token: any;
-	public email: any;
+	public user: any;
 	public url: string;
 
 	constructor(private _http: HttpClient){
@@ -97,17 +97,17 @@ export class UserService{
 		return this.token;
 	}
 
-	getEmail(){
-		let email = localStorage.getItem('email');
-		if(email != "undefined"){
-			this.email = email;
+	getIdentity(){
+		let user = localStorage.getItem('identity');
+		if(user != "undefined"){
+			this.user = user;
 		}else{
-			this.email = null;
+			this.user = null;
 		}
-		return this.email;
+		return this.user;
 	}
 
-	updateUsers(id:string, user: Users){
+	updateUsers(id:string, user){
 		let json = JSON.stringify(user);
 		let params = json;
 		let token = this.getToken();
@@ -117,6 +117,22 @@ export class UserService{
 		//console.log(headers);
 		//let headers = new Headers({'Content-Type':'aplication/json'});
 		return this._http.put(this.url+'userUpdate/'+id, params, {headers: headers});
+			//}.pipe(map(res => res.json()));
+			//.pipe(map(data => new user(data)));
+	}
+
+	deleteUsers(id:string, user){
+		let json = JSON.stringify(user);
+		let params = json;
+		let token = this.getToken();
+		let headers = new HttpHeaders()
+			.set('Content-Type', 'application/json')
+			.set('Authorization', token);
+		const options = {
+			headers: headers,
+			body: params
+		}
+		return this._http.delete(this.url+'userDelete/'+id, options);
 			//}.pipe(map(res => res.json()));
 			//.pipe(map(data => new user(data)));
 	}

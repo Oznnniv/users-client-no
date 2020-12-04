@@ -6,12 +6,12 @@ import { UserService } from '../services/user.service';
 import { Users } from '../models/users';
 
 @Component({
-  selector: 'users-update',
-  templateUrl: '../views/users-update.component.html',
+  selector: 'users-delete',
+  templateUrl: '../views/users-delete.component.html',
   providers: [UserService]
   //styleUrls: ['./app.component.css']
 })
-export class UsersUpdateComponent implements OnInit{
+export class UsersDeleteComponent implements OnInit{
 	public token: any;
 	public form: any;
 	public isHidden: boolean;
@@ -29,6 +29,7 @@ export class UsersUpdateComponent implements OnInit{
 		this.isHidden = true;
 		this.isTUser = true;
 		this.identity = this._userService.getIdentity();
+		//this.user = new Users('null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', null, null, null, null, null, null, null, null, null, null, null, null);
 		//this.user = new Users('email', 'password', 'initialToken', 'typeOfOperation', 'nameOfOperation', 'addressU', 'hashX', 'typeOfUser', 'dp1', 'dp2', 'dp3', 'dp4', 'dp5', 'dp6', 'dp7', 'dp8', 'dp9', 'dp10', 'dp11', 'dp12');
 		this.user = JSON.parse(this.identity);
 		console.log(this.user);
@@ -49,11 +50,11 @@ export class UsersUpdateComponent implements OnInit{
 					this._router.navigate(['/']);
 				}else{
 					if(this.identity.email == response.users.email){
-						response.users.nameOfOperation = 'updateMe';
+						response.users.nameOfOperation = 'deleteMe';
 					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'updateAdministrator';
+						response.users.nameOfOperation = 'deleteAdministrator';
 					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'updateTUser';
+						response.users.nameOfOperation = 'deleteTUser';
 					}
 					var responseDP = JSON.parse(response.users.dp);
 					var jsonData = {
@@ -61,7 +62,7 @@ export class UsersUpdateComponent implements OnInit{
 						password: response.users.password,
 						typeOfUser: response.users.typeOfUser,
 						initialToken: response.users.initialToken,
-						typeOfOperation: 'update',
+						typeOfOperation: 'delete',
 						nameOfOperation: response.users.nameOfOperation,
 						addressU: response.users.addressU,
 						hashX: response.users.hashX,
@@ -98,20 +99,20 @@ export class UsersUpdateComponent implements OnInit{
 		var jsonDP = '{ "createAdministrator": '+this.user.dp1+', "createTUser": '+this.user.dp2+', "updateMe": '+this.user.dp3+', "updateAdministrator": '+this.user.dp4+', "updateTUser": '+this.user.dp5+', "deleteMe": '+this.user.dp6+', "deleteAdministrator": '+this.user.dp7+', "deleteTUser": '+this.user.dp8+', "readMe": '+this.user.dp9+', "readAdministrator": '+this.user.dp10+', "readTUser": '+this.user.dp11+', "loginUser": '+this.user.dp12+' }';
 		var jsonData = {
 			//email: this.user.email,
-			password: this.user.password,
-			typeOfUser: this.user.typeOfUser,
-			initialToken: this.user.initialToken,
+			//password: this.user.password,
+			//typeOfUser: this.user.typeOfUser,
+			//initialToken: this.user.initialToken,
 			typeOfOperation: this.user.typeOfOperation,
 			nameOfOperation: this.user.nameOfOperation,
-			addressU: this.user.addressU,
-			hashX: this.user.hashX,
-			dp: jsonDP
+			//addressU: this.user.addressU,
+			//hashX: this.user.hashX,
+			//dp: jsonDP
 		};
 		var md5 = new Md5();
 		var f = md5.appendStr(JSON.stringify(jsonData)).end();
 		console.log(jsonData);
 		 //CHECAR EL MD5 PARA DESPUÉS
-		this._userService.updateUsers(this.user.email, jsonData).subscribe(
+		this._userService.deleteUsers(this.user.email, jsonData).subscribe(
 			response => {
 				//console.log(response.message);
 				//this.rootCreation = false;
