@@ -8,8 +8,8 @@ import { Users } from '../models/users';
 @Component({
   selector: 'users-delete',
   templateUrl: '../views/users-delete.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class UsersDeleteComponent implements OnInit{
 	public token: any;
@@ -20,6 +20,8 @@ export class UsersDeleteComponent implements OnInit{
 	public user: Users;
 	public errorMessage: any;
 	public registerOk: any;
+	public nameOfOperation;
+
 
 	constructor(
 		private _userService:UserService,
@@ -32,7 +34,7 @@ export class UsersDeleteComponent implements OnInit{
 		//this.user = new Users('null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', null, null, null, null, null, null, null, null, null, null, null, null);
 		//this.user = new Users('email', 'password', 'initialToken', 'typeOfOperation', 'nameOfOperation', 'addressU', 'hashX', 'typeOfUser', 'dp1', 'dp2', 'dp3', 'dp4', 'dp5', 'dp6', 'dp7', 'dp8', 'dp9', 'dp10', 'dp11', 'dp12');
 		this.user = JSON.parse(this.identity);
-		console.log(this.user);
+		//console.log(this.user);
 		this.token = this._userService.getToken();
 
 	}
@@ -49,13 +51,16 @@ export class UsersDeleteComponent implements OnInit{
 				if(!response.users){
 					this._router.navigate(['/']);
 				}else{
-					if(this.identity.email == response.users.email){
-						response.users.nameOfOperation = 'deleteMe';
+					if(this.user.email == response.users.email){
+						this.nameOfOperation = 'deleteMe';
 					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'deleteAdministrator';
-					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'deleteTUser';
+						this.nameOfOperation = 'deleteAdministrator';
+					}else if(response.users.typeOfUser == 'TUser'){
+						this.nameOfOperation = 'deleteTUser';
+					}else{
+						this.nameOfOperation = null;
 					}
+
 					var responseDP = JSON.parse(response.users.dp);
 					var jsonData = {
 						email: response.users.email,
@@ -63,7 +68,7 @@ export class UsersDeleteComponent implements OnInit{
 						typeOfUser: response.users.typeOfUser,
 						initialToken: response.users.initialToken,
 						typeOfOperation: 'delete',
-						nameOfOperation: response.users.nameOfOperation,
+						nameOfOperation: this.nameOfOperation,
 						addressU: response.users.addressU,
 						hashX: response.users.hashX,
 						dp1: responseDP.createAdministrator,
@@ -80,7 +85,11 @@ export class UsersDeleteComponent implements OnInit{
 						dp12: responseDP.loginUser,
 					};
 					this.user = jsonData;
-					//console.log(this.user);
+					if(response.users.typeOfUser == 'Administrator' || response.users.typeOfUser == 'Root' ){
+						this.isTUser = false;
+					}else if(response.users.typeOfUser == 'TUser'){
+						this.isTUser = true;
+					}
 				}
 			},
 			error => {
@@ -117,7 +126,7 @@ export class UsersDeleteComponent implements OnInit{
 				//console.log(response.message);
 				//this.rootCreation = false;
 				//this.menu = true;
-				this._router.navigate(['/GGGG']);
+				this._router.navigate(['/menu']);
 			},
 			error => {
 				var errorMessage = <any> error;

@@ -1,1 +1,10 @@
-MENU
+<h1>MENÚ</h1>
+<form (ngSubmit)="onSubmit()">
+
+	<button type="submit" class="btn btn-secondary">UserCreation</button>
+
+</form>
+Vista dinámica que cambiará cuando se necesite:
+<div *ngIf="!UserCreation">
+	<users-creation ></users-creation>
+</div>

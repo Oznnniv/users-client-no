@@ -8,8 +8,8 @@ import { Users } from '../models/users';
 @Component({
   selector: 'users-creation',
   templateUrl: '../views/users-creation.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class UsersCreationComponent {
 	public token: any;

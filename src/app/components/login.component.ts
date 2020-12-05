@@ -7,8 +7,8 @@ import { Login } from '../models/login';
 @Component({
   selector: 'login',
   templateUrl: '../views/login.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class LoginComponent {
 	public user: Login;

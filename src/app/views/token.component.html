@@ -1,16 +1,26 @@
-<div>
-	<form (ngSubmit)="onSubmit()">
-		<div class="container main-container">
-		    <h4>Token:</h4>
-		    <div *ngIf="errorMessage">
-				<div>
-					<strong>¡Error!</strong> {{ errorMessage }}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-5 col-md-7">
+			<div class="card bg-secondary shadow border-0">
+				<div class="card-body px-lg-5 py-lg-5">
+					<form (ngSubmit)="onSubmit()">
+						<div class="container main-container">
+						    <h4 class="text-center"><strong>Token</strong></h4>
+						    <div *ngIf="errorMessage">
+								<div>
+									<strong>¡Error!</strong> {{ errorMessage }}
+								</div>
+							</div>
+						    <input class="text-center form-control" type="text" name="token" [(ngModel)]="token.token">
+						    <input class="text-center" type="text" name="typeOfOperation" [(ngModel)]="token.typeOfOperation" *ngIf="!isHidden">
+						    <input class="text-center" type="text" name="nameOfOperation" [(ngModel)]="token.nameOfOperation" *ngIf="!isHidden">
+						    <div class="text-center">
+								<button type="submit" class="btn btn-primary my-4">Continuar</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-		    <input type="text" name="token" [(ngModel)]="token.token">
-		    <input type="text" name="typeOfOperation" [(ngModel)]="token.typeOfOperation" *ngIf="!isHidden">
-		    <input type="text" name="nameOfOperation" [(ngModel)]="token.nameOfOperation" *ngIf="!isHidden">
-		    <button type="submit">Continuar</button>
 		</div>
-	</form>
+	</div>
 </div>

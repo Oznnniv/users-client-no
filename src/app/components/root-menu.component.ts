@@ -4,11 +4,17 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'root-menu',
   templateUrl: '../views/root-menu.component.html',
-  //styleUrls: ['./app.component.css']
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class RootMenuComponent {
-	constructor(){}
+	public UserCreation: boolean;
+	constructor(){
+		this.UserCreation = false;
+	}
 
 	ngOnInit() {
+	}
+	OnSubmit(){
+		this.UserCreation = true;
 	}
 }

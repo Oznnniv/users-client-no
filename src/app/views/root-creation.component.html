@@ -1,3 +1,4 @@
+<!--
 <div>
 	<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
 		<h1>Registro</h1>
@@ -21,9 +22,52 @@
 		<p *ngIf="!isHidden">Tipo de operación:</p><input #typeOfOperation="ngModel" name="typeOfOperation" [(ngModel)]="user.typeOfOperation" id="typeOfOperation" type="text" placeholder="Tipo de operación" required="" disabled="true" *ngIf="!isHidden">
 		<p *ngIf="!isHidden">Nombre de operación:</p><input #nameOfOperation="ngModel" name="nameOfOperation" [(ngModel)]="user.nameOfOperation" id="nameOfOperation" type="text" placeholder="Nombre de operación" required="" disabled="true" *ngIf="!isHidden">
 		<p *ngIf="!isHidden">AdrressU:</p><input #addressU="ngModel" name="addressU" [(ngModel)]="user.addressU" id="addressU" type="text" placeholder="AddressU" required="" *ngIf="!isHidden">
-		<!--Modificar para que agarre el MD5-->
 		<p *ngIf="!isHidden">HashX:</p><input #hashX="ngModel" name="hashX" [(ngModel)]="user.hashX" id="hashX" type="text" placeholder="HashX" required="" disabled="true" *ngIf="!isHidden">
 		<p *ngIf="!isHidden">DP:</p><input #dp="ngModel" name="dp" [(ngModel)]="user.dp" id="dp" type="text" placeholder="dp" required="" disabled="true" *ngIf="!isHidden">
 		<br><button type="submit">Confirmar</button>
 	</form>
 </div>
+-->
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-5 col-md-7">
+			<div class="card bg-secondary shadow border-0">
+				<div class="card-body px-lg-5 py-lg-5">
+					<div class="card-body">
+						<div class="table-responsive">
+							<form (ngSubmit)="onSubmit()">
+								<div class="text-center">
+									<h1>Registro</h1>
+								</div>
+								<div *ngIf="errorMessage">
+									<div>
+										<strong>¡Error!</strong> {{ errorMessage }}
+									</div>
+								</div>
+								<input class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" id="email" type="email" placeholder="Correo" required><br>
+								<div class="alert alert-warning" *ngIf="!email.valid && email.touched" role="alert">
+								    <strong>¡Error!</strong> El email es obligatorio
+								</div>
+								<input class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password" id="password" type="password" placeholder="Contraseña" required="">
+								<div class="alert alert-warning" *ngIf="!password.valid && password.touched" role="alert">
+								    <strong>¡Error!</strong> La contraseña es obligatoria
+								</div>
+								<p *ngIf="!isHidden">Tipo de usuario:</p><input #typeOfUser="ngModel" name="typeOfUser" [(ngModel)]="user.typeOfUser" id="typeOfUser" type="text" placeholder="Tipo de usuario" disabled="true"*ngIf="!isHidden">
+								<p *ngIf="!isHidden">Token:</p><input #initialToken="ngModel" name="initialToken" [(ngModel)]="user.initialToken" id="initialToken" type="text" placeholder="Token" required="" *ngIf="!isHidden">
+								<p *ngIf="!isHidden">Tipo de operación:</p><input #typeOfOperation="ngModel" name="typeOfOperation" [(ngModel)]="user.typeOfOperation" id="typeOfOperation" type="text" placeholder="Tipo de operación" required="" disabled="true" *ngIf="!isHidden">
+								<p *ngIf="!isHidden">Nombre de operación:</p><input #nameOfOperation="ngModel" name="nameOfOperation" [(ngModel)]="user.nameOfOperation" id="nameOfOperation" type="text" placeholder="Nombre de operación" required="" disabled="true" *ngIf="!isHidden">
+								<p *ngIf="!isHidden">AdrressU:</p><input #addressU="ngModel" name="addressU" [(ngModel)]="user.addressU" id="addressU" type="text" placeholder="AddressU" required="" *ngIf="!isHidden">
+								<p *ngIf="!isHidden">HashX:</p><input #hashX="ngModel" name="hashX" [(ngModel)]="user.hashX" id="hashX" type="text" placeholder="HashX" required="" disabled="true" *ngIf="!isHidden">
+								<p *ngIf="!isHidden">DP:</p><input #dp="ngModel" name="dp" [(ngModel)]="user.dp" id="dp" type="text" placeholder="dp" required="" disabled="true" *ngIf="!isHidden">
+								<div class="text-center">
+									<button class="btn btn-primary mt-4" type="submit">Registrar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

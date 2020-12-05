@@ -5,6 +5,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 @Component({
   selector: 'welcome',
   templateUrl: '../views/welcome.component.html',
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 
   //styleUrls: ['../assets/js/jquery.min.js', '../assets/bootstrap/css/bootstrap.min.css']
 })

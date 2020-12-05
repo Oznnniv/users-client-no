@@ -8,8 +8,8 @@ import { Token } from '../models/token';
 @Component({
   selector: 'token',
   templateUrl: '../views/token.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class TokenComponent {
 	public isHidden: boolean;
@@ -30,6 +30,9 @@ export class TokenComponent {
 	ngOnInit() {
 	}
 	public onSubmit(){
+		console.log(this.token
+			);
+
 		var newtoken = this.token.token.replace(/['"]+/g, '');
 		var jsonData = {
 			token: newtoken,
@@ -37,7 +40,6 @@ export class TokenComponent {
 			typeOfOperation: this.token.typeOfOperation,
 			nameOfOperation: this.token.nameOfOperation
 		}
-		console.log(jsonData);
 		this._userService.checkToken(jsonData).subscribe(
 			response => {
 				//console.log(response.message);

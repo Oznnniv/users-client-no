@@ -8,8 +8,8 @@ import { Users } from '../models/users';
 @Component({
   selector: 'root-creation',
   templateUrl: '../views/root-creation.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class RootCreationComponent {
 	public isHidden: boolean;

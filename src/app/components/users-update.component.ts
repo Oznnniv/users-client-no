@@ -8,8 +8,8 @@ import { Users } from '../models/users';
 @Component({
   selector: 'users-update',
   templateUrl: '../views/users-update.component.html',
-  providers: [UserService]
-  //styleUrls: ['./app.component.css']
+  providers: [UserService],
+  styleUrls: ['../../assets/argon/css/argon-design-system.css']
 })
 export class UsersUpdateComponent implements OnInit{
 	public token: any;
@@ -20,6 +20,8 @@ export class UsersUpdateComponent implements OnInit{
 	public user: Users;
 	public errorMessage: any;
 	public registerOk: any;
+	public nameOfOperation;
+
 
 	constructor(
 		private _userService:UserService,
@@ -29,9 +31,7 @@ export class UsersUpdateComponent implements OnInit{
 		this.isHidden = true;
 		this.isTUser = true;
 		this.identity = this._userService.getIdentity();
-		//this.user = new Users('email', 'password', 'initialToken', 'typeOfOperation', 'nameOfOperation', 'addressU', 'hashX', 'typeOfUser', 'dp1', 'dp2', 'dp3', 'dp4', 'dp5', 'dp6', 'dp7', 'dp8', 'dp9', 'dp10', 'dp11', 'dp12');
 		this.user = JSON.parse(this.identity);
-		console.log(this.user);
 		this.token = this._userService.getToken();
 
 	}
@@ -48,12 +48,14 @@ export class UsersUpdateComponent implements OnInit{
 				if(!response.users){
 					this._router.navigate(['/']);
 				}else{
-					if(this.identity.email == response.users.email){
-						response.users.nameOfOperation = 'updateMe';
+					if(this.user.email == response.users.email){
+						this.nameOfOperation = 'updateMe';
 					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'updateAdministrator';
-					}else if(response.users.typeOfUser == 'Administrator'){
-						response.users.nameOfOperation = 'updateTUser';
+						this.nameOfOperation = 'updateAdministrator';
+					}else if(response.users.typeOfUser == 'TUser'){
+						this.nameOfOperation = 'updateTUser';
+					}else{
+						this.nameOfOperation = null;
 					}
 					var responseDP = JSON.parse(response.users.dp);
 					var jsonData = {
@@ -62,7 +64,7 @@ export class UsersUpdateComponent implements OnInit{
 						typeOfUser: response.users.typeOfUser,
 						initialToken: response.users.initialToken,
 						typeOfOperation: 'update',
-						nameOfOperation: response.users.nameOfOperation,
+						nameOfOperation: this.nameOfOperation,
 						addressU: response.users.addressU,
 						hashX: response.users.hashX,
 						dp1: responseDP.createAdministrator,
@@ -79,7 +81,11 @@ export class UsersUpdateComponent implements OnInit{
 						dp12: responseDP.loginUser,
 					};
 					this.user = jsonData;
-					//console.log(this.user);
+					if(response.users.typeOfUser == 'Administrator' || response.users.typeOfUser == 'Root' ){
+						this.isTUser = false;
+					}else if(response.users.typeOfUser == 'TUser'){
+						this.isTUser = true;
+					}
 				}
 			},
 			error => {
@@ -88,6 +94,7 @@ export class UsersUpdateComponent implements OnInit{
 					//console.log("Administrator: "+error.error.message);
 					this.errorMessage = error.error.message;
 					this.user = new Users('null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', null, null, null, null, null, null, null, null, null, null, null, null);
+					this.isTUser = false;
 				}
 			}
 		)
@@ -116,7 +123,7 @@ export class UsersUpdateComponent implements OnInit{
 				//console.log(response.message);
 				//this.rootCreation = false;
 				//this.menu = true;
-				this._router.navigate(['/GGGG']);
+				this._router.navigate(['/menu']);
 			},
 			error => {
 				var errorMessage = <any> error;

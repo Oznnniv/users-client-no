@@ -1,9 +1,19 @@
-<div>
-	<form #registerForm="ngForm" (ngSubmit)="onNext()">
-		<div class="container main-container">
-			<h2> Bienvenido(a) </h2>
-		    <h4>Está por crear un usuario ROOT...</h4>
-		    <button type="submit">Continuar</button>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-5 col-md-7">
+			<div class="card bg-secondary shadow border-0">
+				<div class="card-body px-lg-5 py-lg-5">
+					<form #registerForm="ngForm" (ngSubmit)="onNext()">
+						<div class="text-center">
+							<h2> Bienvenido(a) </h2>
+						    <h4>Está por crear un usuario ROOT...</h4>
+						</div>
+						<div class="text-center">
+							<button class="btn btn-success" type="submit">Continuar</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</form>
+	</div>
 </div>
